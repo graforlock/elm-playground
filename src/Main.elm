@@ -108,6 +108,6 @@ decodeGifUrl =
 
 -- DOM
 
-toOption: String -> Html msg
+toOption: String -> Html Msg
 toOption topic =
    option [] [text topic]
