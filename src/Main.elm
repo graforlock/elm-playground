@@ -57,18 +57,13 @@ view model =
         div [] [
             svg [ viewBox "0 0 100 100", width "300px" ]
               [ circle [ cx "50", cy "50", r "45", fill "#0B79CE" ] []
-              ,
-              if model.playing == True then
-                (List.map drawLines angle)
-              else
-                line [] []
-              ]
-            , button [ onClick Toggle ] [ text "Toggle" ]
-        ]
+              , (List.map drawLines angle) ]
+            ,
+            button [ onClick Toggle ] [ text "Toggle" ]]
 
 --SVG
 
-drawLines: List Time -> Html
+drawLines: Float -> Html Msg
 drawLines angle =
     let
         handX =
