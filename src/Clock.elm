@@ -33,7 +33,10 @@ update: Msg -> Model -> (Model, Cmd Msg)
 update msg model =
     case msg of
         Tick newTime ->
-            (Model newTime model.playing, Cmd.none)
+            if model.playing == True then
+                (Model newTime model.playing, Cmd.none)
+            else
+                (Model model.time model.playing, Cmd.none)
 
         Toggle ->
             ({ model | playing = not(model.playing) }, Cmd.none)
@@ -72,9 +75,7 @@ drawLines angle play =
     let ( handX, handY ) =
           ( toString (50 + 40 * cos angle), toString (50 + 40 * sin angle) )
     in
-       if play == True then
-         line [ x1 "50", y1 "50", x2 handX, y2 handY, stroke "#023963" ] []
-       else
-          line [] []
+        line [ x1 "50", y1 "50", x2 handX, y2 handY, stroke "#023963" ] []
+
 
 
